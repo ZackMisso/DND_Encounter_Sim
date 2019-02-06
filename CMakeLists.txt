@@ -31,9 +31,9 @@ if (APPLE)
   find_library(opengl_library OpenGL)
   find_library(corevideo_library CoreVideo)
   find_library(iokit_library IOKit)
-  list(APPEND NANOGUI_EXTRA_LIBS ${cocoa_library} ${opengl_library} ${corevideo_library} ${iokit_library})
-  list(APPEND LIBNANOGUI_EXTRA_SOURCE src/darwin.mm)
- endif()
+  list(APPEND ${cocoa_library} ${opengl_library} ${corevideo_library} ${iokit_library})
+  list(APPEND src/darwin.mm)
+endif()
 
 set(PCG32_INCLUDE_DIR
    ${CMAKE_CURRENT_SOURCE_DIR}/ext/pcg32)
@@ -54,6 +54,7 @@ add_executable(dnd
     include/action.h
     include/battleground.h
     include/creature.h
+    include/creature_stats.h
     include/dice.h
     include/dnd.h
     include/status_effect.h
@@ -63,6 +64,7 @@ add_executable(dnd
     src/action.cpp
     src/battleground.cpp
     src/creature.cpp
+    src/creature_stats.cpp
     src/dice.cpp
     src/main.cpp
     src/status_effect.cpp

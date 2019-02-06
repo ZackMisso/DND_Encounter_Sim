@@ -3,41 +3,21 @@
 Creature::Creature()
 {
     actions = vector<Action*>();
-
-    strength = 10;
-    dexterity = 10;
-    constitution = 10;
-    wisdom = 10;
-    intelligence = 10;
-    charisma = 10;
+    stats = new Creature_Stats();
 }
 
-int Creature::str_modifier() const
+Creature::~Creature()
 {
-    return ability_modifier(strength);
+    for (int i = 0; i < actions.size(); ++i)
+    {
+        delete actions[i];
+    }
+    delete stats;
 }
 
-int Creature::dex_modifier() const
+void Creature::parseFromFile(string filename)
 {
-    return ability_modifier(dexterity);
+    // TODO
 }
 
-int Creature::con_modifier() const
-{
-    return ability_modifier(constitution);
-}
-
-int Creature::wis_modifier() const
-{
-    return ability_modifier(wisdom);
-}
-
-int Creature::int_modifier() const
-{
-    return ability_modifier(intelligence);
-}
-
-int Creature::cha_modifier() const
-{
-    return ability_modifier(charisma);
-}
+void Creature::addAction(Action* action) { actions.push_back(action); }
