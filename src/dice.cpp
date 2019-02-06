@@ -1,5 +1,8 @@
 #include <dice.h>
 
+Dice::Dice()
+    : number(1), size(20), modifier(0) { }
+
 Dice::Dice(int number, int size, int modifer)
     : number(number), size(size), modifier(modifier) { }
 

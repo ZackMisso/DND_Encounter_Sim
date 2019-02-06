@@ -13,34 +13,47 @@
 
 using namespace std;
 
-// useful global methods
+// global types
 
-// TODO: relook up all damage types
 enum DamageType
 {
-    Burning,
-    Cold,
-    Slashing,
-    Piercing,
+    Acid,
     Bludgeoning,
-    True,
-    Radient,
-    Electric
+    Cold,
+    Fire,
+    Force,
+    Lightning,
+    Necrotic,
+    Piercing,
+    Poison,
+    Psychic,
+    Radiant,
+    Slashing,
+    Thunder
 };
 
-enum SavingThrow
+enum Attribute
 {
     Strength,
     Dexterity,
     Constitution,
     Wisdom,
     Intelligence,
-    Charisma
+    Charisma,
+    None // used for non-spellcasters
 };
+
+// useful global methods
+// TODO: maybe make these not global???
 
 static int ability_modifier(int score)
 {
     int modifier = score / 2 - 5;
     if (modifier < -5) modifier = -5;
     return modifier;
+}
+
+static int proficiency_bonus(int level)
+{
+    return (level / 4) + 2;
 }
