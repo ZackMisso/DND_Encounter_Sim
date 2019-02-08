@@ -59,6 +59,7 @@ add_executable(dnd
     include/dnd.h
     include/status_effect.h
     include/swarm.h
+    include/cmd.h
 
     # Implementation files
     src/action.cpp
@@ -69,6 +70,7 @@ add_executable(dnd
     src/main.cpp
     src/status_effect.cpp
     src/swarm.cpp
+    src/cmd.cpp
 )
 
 set(CompilerFlags

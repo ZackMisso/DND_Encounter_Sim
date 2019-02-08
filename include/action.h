@@ -9,6 +9,16 @@
 
 // should this be an abstraction??? or should this be general
 
+// what is a good name for this???
+// struct ActionBit
+// {
+//     Dice toHit;
+//     Attribute attackAttribute;
+//     Attribute save;
+//     StatusEffect* fail;
+//     StatusEffect* pass;
+// };
+
 class Action
 {
 public:
@@ -16,10 +26,19 @@ public:
 
     void evaluate(Creature_Stats* caster, Creature_Stats* target) const;
 
-    // TODO
+    void setToHit(Dice param);
+    void setAttackAttribute(Attribute param);
+    void setSave(Attribute param);
+    void setPassEffect(StatusEffect* param);
+    void setFailEffect(StatusEffect* param);
 
 protected:
-    vector<Dice> toHit;
-    vector<pair<Attribute, StatusEffect> > savingThrows;
-    vector<pair<DamageType, Dice> > damage;
+    string name;
+    string flavorText;
+
+    Dice toHit;
+    Attribute attackAttribute;
+    Attribute save;
+    StatusEffect* fail;
+    StatusEffect* pass;
 };
