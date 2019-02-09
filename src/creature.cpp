@@ -5,6 +5,14 @@ Creature::Creature()
     statusEffects = vector<StatusEffect*>();
     actions = vector<Action*>();
     stats = new Creature_Stats();
+    name = "null";
+}
+
+Creature::Creature(string name) : name(name)
+{
+    statusEffects = vector<StatusEffect*>();
+    actions = vector<Action*>();
+    stats = new Creature_Stats();
 }
 
 Creature::~Creature()
@@ -25,6 +33,11 @@ Creature::~Creature()
 }
 
 void Creature::parseFromFile(string filename)
+{
+    // TODO
+}
+
+void Creature::info() const
 {
     // TODO
 }

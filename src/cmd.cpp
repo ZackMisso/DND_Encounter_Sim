@@ -39,31 +39,53 @@ void CMDInterface::info(int level)
     }
 }
 
-void CMDInterface::run()
+void CMDInterface::run(State* state)
 {
     introText();
     cout << endl;
-    inputLoop();
+    inputLoop(state);
 }
 
-void CMDInterface::inputLoop()
+void CMDInterface::inputLoop(State* state)
 {
+    // TODO: replace string input with a function for abstraction
     cout << "> ";
     string str;
     cin >> str;
 
-    if (str == "create")
+    if (str == "info")
+    {
+        info(0);
+    }
+    else if (str == "create")
     {
         cin >> str;
 
         if (str == "creature")
         {
-            // TODO
+            cin >> str;
+
+            if (state->containsCreature(str))
+            {
+                cout << "Error: " << str << " already exists as a creature" << endl;
+            }
+            else
+            {
+                state->creatures.push_back(new Creature(str));
+            }
         }
         else if (str == "action")
         {
-            cout << "whoop" << endl;
-            // TODO
+            cin >> str;
+
+            if (state->containsAction(str))
+            {
+                cout << "Error: " << str << " already exists as an action" << endl;
+            }
+            else
+            {
+                state->actions.push_back(new Action(str));
+            }
         }
         else
         {
@@ -74,27 +96,120 @@ void CMDInterface::inputLoop()
     }
     else if (str == "edit")
     {
-        // TODO
+        cin >> str;
+
+        if (str == "creature")
+        {
+            cin >> str;
+
+            Creature* creature = state->findCreature(str);
+
+            if (creature)
+            {
+                creatureLoop(state, creature);
+            }
+            else
+            {
+                cout << "Error: " << str << " does not exist as a creature" << endl;
+            }
+        }
+        else if (str == "action")
+        {
+            cin >> str;
+
+            Action* action = state->findAction(str);
+
+            if (action)
+            {
+                actionLoop(state, action);
+            }
+            else
+            {
+                cout << "Error: " << str << " does not exist as an action" << endl;
+            }
+        }
+        else
+        {
+            cout << "Error: the edit command expects to be followed by 'creature' or 'action'" << endl;
+        }
     }
     else if (str == "delete")
     {
-        // TODO
+        cin >> str;
+
+        if (str == "creature")
+        {
+            cin >> str;
+
+            if (!state->removeCreature(str))
+            {
+                cout << "Error: Could not remove creature " << str << endl;
+            }
+        }
+        else if (str == "action")
+        {
+            cin >> str;
+
+            if (!state->removeAction(str))
+            {
+                cout << "Error: Could not remove action " << str << endl;
+            }
+        }
+        else
+        {
+            cout << "Error: the delete command expects to be followed by 'action' or 'creature'" << endl;
+        }
     }
     else if (str == "show")
     {
-        // TODO
+        cin >> str;
+
+        if (str == "creature")
+        {
+            cin >> str;
+
+            Creature* creature = state->findCreature(str);
+
+            if (creature)
+            {
+                creature->info();
+            }
+            else
+            {
+                cout << "Error: creature " << str << " does not exist" << endl;
+            }
+        }
+        else if (str == "action")
+        {
+            cin >> str;
+
+            Action* action = state->findAction(str);
+
+            if (action)
+            {
+                action->info();
+            }
+            else
+            {
+                cout << "Error: creature " << str << " does not exist" << endl;
+            }
+        }
+        else
+        {
+            cout << "Error: the show command expects either 'creature' or 'actioon'" << endl;
+        }
     }
     else if (str == "save")
     {
-        // TODO
+        // TODO: much later
     }
     else if (str == "load")
     {
-        // TODO
+        // TODO: much later
     }
     else if (str == "fight")
     {
-        // TODO
+        // TODO: much later
     }
     else if (str == "exit")
     {
@@ -105,15 +220,23 @@ void CMDInterface::inputLoop()
         cout << "Error: unrecognized token: " << str << endl;
     }
 
-    inputLoop();
+    inputLoop(state);
 }
 
-void CMDInterface::creatureLoop()
+void CMDInterface::creatureLoop(State* state, Creature* creature)
 {
+    cout << ">> ";
+    string str;
+    cin >> str;
+
     // TODO
 }
 
-void CMDInterface::actionLoop()
+void CMDInterface::actionLoop(State* state, Action* action)
 {
+    cout << ">> ";
+    string str;
+    cin >> str;
+
     // TODO
 }

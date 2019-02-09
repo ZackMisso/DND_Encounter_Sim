@@ -23,14 +23,23 @@ class Action
 {
 public:
     Action();
+    Action(string name);
 
     void evaluate(Creature_Stats* caster, Creature_Stats* target) const;
+
+    void info() const;
 
     void setToHit(Dice param);
     void setAttackAttribute(Attribute param);
     void setSave(Attribute param);
     void setPassEffect(StatusEffect* param);
     void setFailEffect(StatusEffect* param);
+
+    string getName() const;
+    string getFlavorText() const;
+
+    void setName(string param);
+    void setFlavorText(string param);
 
 protected:
     string name;

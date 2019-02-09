@@ -60,6 +60,7 @@ add_executable(dnd
     include/status_effect.h
     include/swarm.h
     include/cmd.h
+    include/state.h
 
     # Implementation files
     src/action.cpp

@@ -7,12 +7,15 @@ class Creature
 {
 public:
     Creature();
+    Creature(string name);
     ~Creature();
 
     void addAction(Action* action);
     void addStatusEffect(StatusEffect* effect);
 
     void parseFromFile(string filename);
+
+    void info() const;
 
     int roll_health(pcg32& rng) const;
     int roll_initiative(pcg32& rng) const;
