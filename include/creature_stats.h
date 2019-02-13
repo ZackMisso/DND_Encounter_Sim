@@ -20,10 +20,15 @@ public:
 
     int base_ac() const;
 
+    void takeDamage(int damage, DamageType type);
+
     void addResistance(DamageType param);
     void addImmunity(DamageType param);
     void addVulnerability(DamageType param);
     void addProficiency(Attribute param);
+
+    int getHealth();
+    int getMaxHealth();
 
     void setLevel(int param);
     void setStrength(int param);
@@ -34,6 +39,8 @@ public:
     void setCharisma(int param);
     void setAC(int param);
     void setSpellCastingAttribute(Attribute param);
+    void setHealth(int param);
+    void setMaxHealth(int param);
 
 protected:
     vector<DamageType> resistances;
@@ -54,4 +61,8 @@ protected:
     int wisdom;
     int intelligence;
     int charisma;
+
+    // health related attributes
+    int max_health;
+    int health;
 };

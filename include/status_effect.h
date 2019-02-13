@@ -10,11 +10,7 @@ class StatusEffect
 public:
     StatusEffect();
 
-    // // whether or not this status effect will affect the creature on their
-    // // next turn
-    // bool instantaneous;
-
-    // TODO
+    virutal void evaluate(Creature_Stats* victim, Creature_Stats* caster) = 0;
 
     string getName() const;
     string getFlavorText() const;
@@ -25,4 +21,18 @@ public:
 protected:
     string name;
     string flavorText;
+};
+
+class Instant_Damage : public StatusEffect
+{
+public:
+    Instant_Damage(Dice dice, Attribute attribute);
+
+    virtual void evaluate(Creature_Stats* victim, Creature_Stats* caster);
+
+    static Instant_Damage* creatureInstantDamage(Dice dice, Attribute attribute);
+
+protected:
+    Dice damage;
+    Attribute attribute;
 };
