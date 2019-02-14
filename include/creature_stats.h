@@ -11,6 +11,8 @@ public:
     int spell_save_dc() const;
     int spell_casting_modifier() const;
 
+    int modifier(Attribute attribute) const;
+
     int str_modifier() const;
     int dex_modifier() const;
     int con_modifier() const;
@@ -27,8 +29,8 @@ public:
     void addVulnerability(DamageType param);
     void addProficiency(Attribute param);
 
-    int getHealth();
-    int getMaxHealth();
+    int getHealth() const;
+    int getMaxHealth() const;
 
     void setLevel(int param);
     void setStrength(int param);

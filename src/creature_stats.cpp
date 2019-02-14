@@ -23,22 +23,27 @@ int Creature_Stats::spell_save_dc() const
 
 int Creature_Stats::spell_casting_modifier() const
 {
-    switch (spell_casting_attribute)
+    return modifier(spell_casting_attribute);
+}
+
+void Creature_Stats::takeDamage(int damage, DamageType type)
+{
+    // TODO
+}
+
+int Creature_Stats::modifier(Attribute attribute) const
+{
+    switch (attribute)
     {
-        case Strength: return str_modifier(); // lol
-        case Dexterity: return dex_modifier(); // also lol
-        case Constitution: return con_modifier(); // more lolz
+        case Strength: return str_modifier();
+        case Dexterity: return dex_modifier();
+        case Constitution: return con_modifier();
         case Wisdom: return wis_modifier();
         case Intelligence: return int_modifier();
         case Charisma: return cha_modifier();
     }
 
     return 0;
-}
-
-void Creature_Stats::takeDamage(int damage, DamageType type)
-{
-    // TODO
 }
 
 void Creature_Stats::addResistance(DamageType param) { resistances.push_back(param); }
