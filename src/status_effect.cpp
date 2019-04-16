@@ -6,6 +6,8 @@ StatusEffect::StatusEffect()
     flavorText = "";
 }
 
+StatusEffect::~StatusEffect() { }
+
 string StatusEffect::getName() const { return name; }
 string StatusEffect::getFlavorText() const { return flavorText; }
 
@@ -22,7 +24,7 @@ void Instant_Damage::evaluate(pcg32& rng,
                               Creature_Stats* victim,
                               Creature_Stats* caster)
 {
-    int roll = damage->roll_total(rng) + caster->modifier(attribute);
+    int roll = damage.roll_total(rng) + caster->modifier(attribute);
 
     victim->takeDamage(roll, type);
 }

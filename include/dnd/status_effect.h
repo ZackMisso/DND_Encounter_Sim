@@ -10,6 +10,7 @@ class StatusEffect
 {
 public:
     StatusEffect();
+    virtual ~StatusEffect();
 
     virtual void evaluate(pcg32& rng,
                           Creature_Stats* victim,
